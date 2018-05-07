@@ -178,4 +178,9 @@ function sendPositionToServer() {
     getQuestion(currentPosition);
 }
 
+document.addEventListener("deviceready", function(e) {
+    console.log('>> device ready: ', e);
+    console.log('>>> device: ', device);
+}, false);
+
 sendPositionToServer();
