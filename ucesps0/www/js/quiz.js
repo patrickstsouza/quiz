@@ -7,7 +7,7 @@ var saveAnswerEndpoint = "http://developer.cege.ucl.ac.uk:30278/saveAnswer";
 // https://stackoverflow.com/questions/34859217/cordova-device-plugin-not-working
 function getPhoneId() {
     if (!("device" in window)) {
-        return 'foo';
+        return 'unknown';
     }
     return device.uuid;
 }
@@ -42,8 +42,7 @@ function getQuestion(position) {
             var response = JSON.parse(client.responseText);
             currentQuestion = response;
 
-            console.log('response from server: ', response);
-
+            // If there are no questions returned by server, we show a message
             if (!response.question) {
                 // Show that there are no questions to show
                 // Source: https://www.w3schools.com/howto/howto_js_add_class.asp
@@ -52,6 +51,7 @@ function getQuestion(position) {
                 return;
             }
 
+            // Hide 'There are no questions for this location'"' message
             document.getElementById("no-question").classList.remove('show');
 
             // Setting question and answers text
@@ -118,7 +118,7 @@ function submitAnswer() {
         console.log('user chose the wrong option');
     }
 
-    // Sending the selected answer to the serve
+    // Sending the selected answer to the server
     client = new XMLHttpRequest();
     client.open('POST', saveAnswerEndpoint, true);
 
@@ -161,7 +161,7 @@ function done() {
 
 var currentPosition;
 
-// Watching user position
+// Watching user position. Every time the position changes we save to the 'currentPosition' global variable
 // Source: https://developers.google.com/web/fundamentals/native-hardware/user-location/
 navigator.geolocation.watchPosition(function(position){
     currentPosition = position;
@@ -179,10 +179,5 @@ function sendPositionToServer() {
     // If we have position, see if the server has a question for us
     getQuestion(currentPosition);
 }
-
-document.addEventListener("deviceready", function(e) {
-    console.log('>> device ready: ', e);
-    console.log('>>> device: ', device);
-}, false);
 
 sendPositionToServer();
