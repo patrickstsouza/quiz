@@ -1,5 +1,5 @@
-var sendLocationEndpoint = "http://localhost:4480/getQuestionForLocation";
-var saveAnswerEndpoint = "http://localhost:4480/saveAnswer";
+var sendLocationEndpoint = "http://developer.cege.ucl.ac.uk:30278/getQuestionForLocation";
+var saveAnswerEndpoint = "http://developer.cege.ucl.ac.uk:30278/saveAnswer";
 
 // Getting phone id using cordova plugin
 // Source: http://docs.phonegap.com/en/3.0.0/cordova_device_device.md.html#device.uuid
@@ -16,10 +16,8 @@ function getQuestion(position) {
 
     // Getting lat and long. Coordinate system is WGS84
     // Source: https://www.w3.org/TR/geolocation-API/
-    // var lat = position.coords.latitude;
-    // var long = position.coords.longitude;
-    var lat = 51.4955990934676;
-    var long = -0.0889205932617188;
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
 
     console.log('got location: ', lat, long);
 
