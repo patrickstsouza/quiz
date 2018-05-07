@@ -2,7 +2,9 @@ var sendLocationEndpoint = "http://developer.cege.ucl.ac.uk:30278/getQuestionFor
 var saveAnswerEndpoint = "http://developer.cege.ucl.ac.uk:30278/saveAnswer";
 
 // Getting phone id using cordova plugin
-// Source: http://docs.phonegap.com/en/3.0.0/cordova_device_device.md.html#device.uuid
+// Sources:
+// http://docs.phonegap.com/en/3.0.0/cordova_device_device.md.html#device.uuid
+// https://stackoverflow.com/questions/34859217/cordova-device-plugin-not-working
 function getPhoneId() {
     if (!("device" in window)) {
         return 'foo';
