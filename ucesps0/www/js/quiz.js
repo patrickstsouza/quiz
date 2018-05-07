@@ -1,4 +1,5 @@
 var sendLocationEndpoint = "http://localhost:4480/getQuestionForLocation";
+var saveAnswerEndpoint = "http://localhost:4480/saveAnswer";
 
 // Getting phone id using cordova plugin
 // Source: http://docs.phonegap.com/en/3.0.0/cordova_device_device.md.html#device.uuid
@@ -116,6 +117,18 @@ function submitAnswer() {
         document.getElementById("message").innerHTML = "You chose the wrong answer";
         console.log('user chose the wrong option');
     }
+
+    // Sending the selected answer to the serve
+    client = new XMLHttpRequest();
+    client.open('POST', saveAnswerEndpoint, true);
+
+    // Tells the server we are sending JSON in the request body
+    client.setRequestHeader("Content-type", "application/json");
+    client.send(JSON.stringify({
+        phoneId: getPhoneId(),
+        questionId: currentQuestion.id,
+        answer: chosenOption,
+    }));
 }
 
 function done() {
