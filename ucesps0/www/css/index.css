@@ -1,0 +1,39 @@
+#no-question {
+    display: none;
+}
+
+#no-question.show {
+    display: block;
+}
+
+#question-container {
+    display: none;
+}
+
+#question-container.show {
+    display: block;
+}
+
+.line {
+    margin-top:5px;
+}
+
+#question-container {
+    display: none;
+}
+
+.wrong {
+    color: red;
+}
+
+.right {
+    color: green;
+}
+
+#final-message {
+    display: none;
+}
+
+#final-message.show {
+    display: block;
+}

@@ -24,7 +24,41 @@
 
   </head>
   <body>
-    
+    <div id="no-question">
+      <label>No question for this location</label>
+    </div>
+    <div id="question-container">
+      <div class="line">
+          <label>Question:</label>
+          <label id="question"></label>
+      </div>
+      <div id="option-selector">
+          <div class="line">
+              <input type="radio" name="chosenOption" value="1"></input>
+              <label id="option1"></label>
+          </div>
+          <div class="line">
+              <input type="radio" name="chosenOption" value="2"></input>
+              <label id="option2"></label>
+          </div>
+          <div class="line">
+              <input type="radio" name="chosenOption" value="3"></input>
+              <label id="option3"></label>
+          </div>
+          <div class="line">
+              <input type="radio" name="chosenOption" value="4"></input>
+              <label id="option4"></label>
+          </div>
+          <div class="line">
+              <button onclick="submitAnswer(); return false" id="submitButton">Submit</button>
+          </div>
+      </div>
+      <div id="final-message">
+        <label id="message"></label>
+        <br/>
+        <button onclick="done(); return false" id="doneButton">Done</button>
+      </div>
+    </div>
     <script src="js/quiz.js"></script>
   </body>
 </html>
