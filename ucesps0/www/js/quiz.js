@@ -28,6 +28,7 @@ function getQuestion(position) {
     console.log('got location: ', lat, long);
 
     // Creating new serve request, it will be a POST as we need to send data.
+    // Source: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
     client = new XMLHttpRequest();
     client.open('POST', sendLocationEndpoint, true);
 
@@ -135,6 +136,7 @@ function submitAnswer() {
     }
 
     // Creating a new POST request to the serve as data will be sent
+    // Source: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
     client = new XMLHttpRequest();
     client.open('POST', saveAnswerEndpoint, true);
 
