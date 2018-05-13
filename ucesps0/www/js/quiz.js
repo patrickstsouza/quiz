@@ -61,22 +61,22 @@ function getQuestion(position) {
 
                 // Will trigger another question fetch
                 done();
-                return;
+            } else {
+
+                // Hide 'There are no questions for this location' message
+                document.getElementById("no-question").classList.remove('show');
+
+                // Setting question and answers text
+                // Source: https://stackoverflow.com/questions/4488714/change-label-text-using-javascript
+                document.getElementById("question").innerHTML = response.question;
+                document.getElementById("option1").innerHTML = response.answer1;
+                document.getElementById("option2").innerHTML = response.answer2;
+                document.getElementById("option3").innerHTML = response.answer3;
+                document.getElementById("option4").innerHTML = response.answer4;
+
+                // Shows question container
+                document.getElementById("question-container").classList.add('show');
             }
-
-            // Hide 'There are no questions for this location' message
-            document.getElementById("no-question").classList.remove('show');
-
-            // Setting question and answers text
-            // Source: https://stackoverflow.com/questions/4488714/change-label-text-using-javascript
-            document.getElementById("question").innerHTML = response.question;
-            document.getElementById("option1").innerHTML = response.answer1;
-            document.getElementById("option2").innerHTML = response.answer2;
-            document.getElementById("option3").innerHTML = response.answer3;
-            document.getElementById("option4").innerHTML = response.answer4;
-
-            // Shows question container
-            document.getElementById("question-container").classList.add('show');
         }
     };
     // Sends the data to the server
@@ -185,9 +185,15 @@ var currentPosition;
 // Watching user position. Every time the position changes we save to the 'currentPosition' global variable
 // Source: https://developers.google.com/web/fundamentals/native-hardware/user-location/
 // Source: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
-navigator.geolocation.watchPosition(function(position){
-    currentPosition = position;
-});
+// navigator.geolocation.watchPosition(function(position){
+//     currentPosition = position;
+// });
+
+setInterval(function() {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        currentPosition = position
+    }, function() {}, { enableHighAccuracy: true, maximumAge: 0 });
+}, 1000)
 
 // Sends the current position to the server in hopes of getting a question
 function sendPositionToServer() {
